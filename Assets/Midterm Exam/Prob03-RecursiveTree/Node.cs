@@ -8,6 +8,7 @@ namespace MidtermExam.Prob03
     /// </summary>
     public class Node
     {
+
         // ตัวอย่าง Binary Tree: new Node(1, new Node(2), new Node(3))
         //
         //                       [1]  <-- node (root)

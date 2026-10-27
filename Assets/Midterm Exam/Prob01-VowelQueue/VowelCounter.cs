@@ -6,24 +6,70 @@ namespace MidtermExam.Prob01
     public class VowelCounter
     {
         /// <summary>
-        /// ข้อ 01: นับจำนวนสระภาษาอังกฤษตัวพิมพ์เล็กในคิว โดยใช้หลัก FIFO
-        /// (สมาชิกที่เข้าก่อนออกก่อน) และรักษาสมาชิกกับลำดับของคิวเดิม
+
+        /// โค้ดที่เตรียมให้: แยกข้อความคำสั่งแล้วเรียกเมธอดของ StudentWebBrowser
+
+        /// นักศึกษาไม่ต้องแก้ไขไฟล์นี้ ให้เขียนระบบประวัติใน StudentWebBrowser.cs
+
         /// </summary>
-        /// <param name="alphabets">
-        /// คิวข้อความที่ต้องการตรวจ นับเฉพาะ "a", "e", "i", "o", "u" และนับตัวซ้ำทุกตัว
-        /// ข้อความอื่น เช่น "A", "ae", ข้อความว่าง และสมาชิก null ไม่นับเป็นสระ
-        /// </param>
-        /// <returns>จำนวนสระทั้งหมด หรือ 0 เมื่อคิวเป็น null หรือไม่มีสมาชิก</returns>
-        /// <remarks>
-        /// ตัวแปร Queue<string> alphabets หลังจากจบ function จะต้องยังคงข้อมูลให้เหมือนเดิมทั้งจำนวนและลำดับ
-        /// HINT: อ่านข้อมูลด้วย Dequeue() และใส่กลับด้วย Enqueue() ในคิวที่รับมา
-        /// ตัวอย่าง: ["a", "b", "e", "a"] จะต้อง return 3 
-        /// และคิวหลังเรียกยังเป็น ["a", "b", "e", "a"] เหมือนเดิม
-        /// </remarks>
-        public int AS01_CountVowels(Queue<string> alphabets)
+
+        public class BrowserNavigation
+
         {
-            // TODO: เขียนคำตอบแทนคำสั่ง throw exception ด้านล่าง
-            throw new NotImplementedException();
+
+            /// <summary>ประมวลผลคำสั่งที่คั่นด้วย ; โดยสร้าง browser ใหม่ทุกครั้งที่เรียก</summary>
+
+            /// <param name="actions">
+
+            /// รองรับ open ตามด้วย URL, back, forward และ current โดยแยกตัวพิมพ์เล็ก/ใหญ่
+
+            /// ตัดช่องว่างรอบคำสั่งและ URL ให้แล้ว คำสั่งที่ไม่รู้จักจะถูกข้าม
+
+            /// </param>
+
+            /// <returns>
+
+            /// array ของ URL ที่ได้จากคำสั่ง current ตามลำดับ หนึ่งคำสั่งต่อหนึ่งผลลัพธ์
+
+            /// ถ้า actions เป็น null/ว่าง/ช่องว่างล้วน หรือไม่มี current จะคืน array ว่าง
+
+            /// </returns>
+
+            /// <remarks>ตัวอย่าง: "current; open a; current" ได้ผลลัพธ์ ["", "a"]</remarks>
+            /// 
         }
+            public int AS01_CountVowels(Queue<string> alphabets)
+        {
+            
+            if (alphabets == null || alphabets.Count == 0)
+            {
+                return 0;
+            }
+
+            int vowelCount = 0;
+            
+            int totalElements = alphabets.Count;
+
+            
+            for (int i = 0; i < totalElements; i++)
+            {
+                
+                string current = alphabets.Dequeue();
+
+                
+                if (current == "a" || current == "e" || current == "i" || current == "o" || current == "u")
+                {
+                    vowelCount++;
+                }
+
+                
+                alphabets.Enqueue(current);
+            }
+
+            return vowelCount;
+        }
+
     }
+
 }
+
